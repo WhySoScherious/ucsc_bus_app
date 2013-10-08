@@ -2,39 +2,57 @@
 UCSC Bus Buddy
 Team SPARC
 Deadline: December 9th, 2013
-Version 1.0
+Version 1.1
 Revision Date: 10/07/2013
 
 To create an android app designed for UCSC students using school and
 Santa Cruz Metro buses.
 
 High level goals:
-1. Have a main page for the app
-2. Have bus stop icons on a map overly
-3. Have the Santa Cruz Metro bus schedule
-4. Have an option for the next closest bus stop at current location
-5. Create a user manual for the app
+1. Have bus stop icons on a map overly
+2. Have the Santa Cruz Metro bus schedule
+3. Have a main page for the app
+4. Create a user manual for the app
+5. Have an option for the next closest bus stop at current location
 6. Completely test the app’s functions and usability
 7. Design graphics for the icons for the app
-8. Implement mapping of loop buses currently on UCSC campus
 
 User stories:
-1. As a student user, I want an interface to navigate on the app, so that
-I find the option that best fits my need.
-2. As a student user, I want to know the closest bus stop to me, so that I
+Sprint I:
+1. 
+As a student user, I want to know the closest bus stop to me, so that I
 can quickly catch the closest bus to me.
-3. As a student user, I want to have the entire bus schedule, so that I
+
+2. 
+As a student user, I want to have the entire bus schedule, so that I
 coordinate my schedule around the bus schedule.
-4. As a student user, I want to know when the next bus is coming at my
+
+Sprint II:
+3. 
+As a student user, I want an interface to navigate on the app, so that
+I find the option that best fits my need.
+
+4. 
+As a student user, I must be able to read a user manual of the app.
+
+Sprint III:
+5. 
+As a student user, I want to know when the next bus is coming at my
 current location, so I can determine whether I want to wait for the bus now.
-5. As a student user, I must be able to read a user manual of the app.
-6. As a tester, I need to be able to test all of the functions implemented
+
+6. 
+As a tester, I need to be able to test all of the functions implemented
 and make sure they are working properly.
-7. As a developer, I want each option to have an icon, so that the app
+
+7. 
+As a developer, I want each option to have a graphical icon, so that the app
 is aesthetically pleasing to the user.
+
 As a student user, I want each option to have an icon, so that I can
 associate a graphic with a function of the app.
-8. As a student user, I want to know where the loop buses are at, so that
-I would know whether or not I should walk to my destination.
 
 Product Backlog:
+- Implement mapping of loop buses currently on UCSC campus
+
+As a student user, I want to know where the loop buses are at, so that
+I would know whether or not I should walk to my destination.
