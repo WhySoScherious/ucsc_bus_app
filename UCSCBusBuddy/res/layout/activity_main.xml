@@ -6,32 +6,43 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#D5FFFF"
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/select_stop"
-        android:layout_width="wrap_content"
+        android:id="@+id/bus_schedule"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/select_stop"
+        android:layout_marginBottom="94dp"
+        android:background="@drawable/mybutton"
+        android:text="Bus Schedule" />
+
+    <Button
+        android:id="@+id/select_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bus_schedule"
         android:layout_alignLeft="@+id/closest_stop"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="75dp"
+        android:background="@drawable/mybutton"
         android:text="Select a Stop" />
 
     <Button
         android:id="@+id/closest_stop"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/select_stop"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:background="@drawable/mybutton"
         android:text="Closest Stop" />
 
-    <Button
-        android:id="@+id/bus_schedule"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/closest_stop"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="75dp"
-        android:text="Bus Schedule" />
+        android:layout_centerHorizontal="true"
+        android:text="Developed by SPARC" />
 
 </RelativeLayout>
