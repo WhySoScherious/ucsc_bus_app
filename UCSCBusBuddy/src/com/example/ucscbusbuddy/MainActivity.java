@@ -3,6 +3,8 @@ package com.example.ucscbusbuddy;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
@@ -10,6 +12,19 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setButtonClickListener(R.id.bus_schedule);
+        setButtonClickListener(R.id.closest_stop);
+        setButtonClickListener(R.id.select_stop);
+    }
+
+    private void setButtonClickListener(int idButton) {
+        Button toggleButton = (Button)findViewById(idButton);
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
