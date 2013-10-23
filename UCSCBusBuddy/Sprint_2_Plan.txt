@@ -11,8 +11,8 @@ Sprint Goals:
 - Have bus stop icons on a map overlay
 - Create a user manual for the app
 
-Task Listing: 
-User Story 1: As a student user, I want to be able to know closest
+Task Listings: 
+User Story 1: As a student user, I want to be able to know the closest
 stop to me so that I can go to that stop. - 13 story points
 
 - Get GPS location and calculate closest stop. - 3 hours
@@ -27,23 +27,7 @@ Assigned to Sable
 Total hours: 10 hrs.
 
 User Story 2: As a student user, I want the bus schedule for buses
-10-20 displayed on the app so that I can see it. - 1 story point
-
-- Create a link for main page options to blank pages. - 1 hour
-Assigned to Cole
-
-Total hours: 1 hour
-
-User Story 3: As a developer, I want each button/option to open another
-page, so that I can upload different things to each page. - 5 story points
-
-- Use template of user manual. - 2 hours
-Assigned to Aastha
-
-Total hours: 2 hours
-
-User Story 4: As a student user, I must be able to read a user manual
-of the app, so that I can know how to use the app. 8 story points
+10-20 displayed on the app, so that I can see it. - 8 story points
 
 - Compile database of bus schedules and write modules to access it. - 6 hours
 
@@ -57,6 +41,22 @@ Assigned to Paul
 - Add sister stop for each stop in database. - 5 hours
 
 Total hours: 14 hours
+
+User Story 3: As a developer, I want each button/option to open another
+page, so that I can upload different features to each page. - 1 story point
+
+- Create a link for main page options to blank pages. - 1 hour
+Assigned to Cole
+
+Total hours: 1 hour
+
+User Story 4: As a student user, I must be able to read a user manual
+of the app, so that I can know how to use the app. - 5 story points
+
+- Use template for creation of user manual. - 2 hours
+Assigned to Aastha
+
+Total hours: 2 hours
 
 Team Roles: 
 Aastha Verma: Product Owner, Information Gatherer, Researcher
