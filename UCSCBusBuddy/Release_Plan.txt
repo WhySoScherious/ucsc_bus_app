@@ -3,45 +3,52 @@ UCSC Bus Buddy
 Team SPARC
 Deadline: December 9th, 2013
 Version 1.2
-Revision Date: 10/08/2013
+Revision Date: 10/22/2013
 
 To create an android app designed for UCSC students using school and
 Santa Cruz Metro buses.
 
 High level goals:
-1. Have bus stop icons on a map overly
-   Have the Santa Cruz Metro bus schedule
-2. Have a main page for the app
-   Create a user manual for the app
-3. Have an option for the next closest bus stop at current location
-   Completely test the app’s functions and usability
-   Design graphics for the icons for the app
+Have a main page for the app
+Have the Santa Cruz Metro bus schedule
+Have an option for the next closest bus stop at current location
+Have bus stop icons on a map overlay
+Create a user manual for the app
+Completely test the app’s functions and usability
+Design graphics for the icons for the app
 
 User stories:
 Sprint I:
-As a student user, I want to know the closest bus stop to me, so that I
-can quickly catch the closest bus to me. - 5 points
-
-As a student user, I want to have the entire bus schedule, so that I
+1. As a student user, I want to have the entire bus schedule, so that I
 coordinate my schedule around the bus schedule. - 1 points
 
-As a developer, I want to build a basic interface so that I can develop
+2. As a student user, I want to know the closest bus stop to me, so that I
+can quickly catch the closest bus to me. - 5 points
+
+3. As a developer, I want to build a basic interface, so that I can develop
 basic functionality. - 8 points
 
 Sprint II:
-As a student user, I want an interface to navigate on the app, so that
-I can find the option that best fits my need. - 5 points
+1. As a student user, I want to be able to know closest stop to me, so
+that I can go to that stop. - 13 points
 
-As a student user, I must be able to read a user manual of the app. - 3 points
+2. As a student user, I want the bus schedule for buses 10-20 displayed
+on the app, so that I can see it. - 1 point
+
+3. As a developer, I want each button/option to open another page, so
+that I can upload different things to each page. - 2 points
+
+4. As a student user, I must be able to read a user manual of the app,
+so that I can know how to use the app. - 8 points
 
 Sprint III:
-As a student user, I want to know when the next bus is coming at my
+1. As a student user, I want to know when the next bus is coming at my
 current location, so I can determine whether I want to wait for the bus now. - 8 points
 
-As a tester, I need to be able to test all of the functions implemented
+2. As a tester, I need to be able to test all of the functions implemented
 and make sure they are working properly. - 5 points
 
-As a student user, I want each option to have an icon, so that I can
+3. As a student user, I want each option to have an icon, so that I can
 associate a graphic with a function of the app. - 3 points
 
 Product Backlog:
