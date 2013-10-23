@@ -1,0 +1,47 @@
+Sprint 1 Plan 1.1 
+
+UCSC Bus Buddy made by Team SPARC
+
+Sprint 1 is completed on 10/18/13 
+
+- Display an app which has bus schedules for both SCMTD buses and UCSC buses.
+
+- Design a visually pleasing Android application
+
+- Implement the locating of current GPS coordinates and finding closest bus stop.
+
+Task Listing: 
+
+User story 1: As a student user I want to know the closest bus stop to me so that I can catch the closest 
+
+- Figure out every stop on bus 10-20, nightcore, loop and their coordinates. Also get the GPA 
+
+coordinates of each stop along with street and cross street name. - 2 hr.
+
+- Figure out how to code that information into the mobile. - 3 hr.
+
+User story 2: As a student user I want to have the entire bus schedule so that I can coordinate my 
+
+personal schedule around it. 
+
+- Get bus schedule for nightcore - 0 hr.
+
+- Get bus schedule for loop buses - 0 hr.
+
+- Get bus schedule for SCMTD buses - 0 hr.
+
+User story 3: As a developer I want to build a basic interface so that I can develop basic functionality. 
+
+- Design landing page with name - 5 hr.
+
+- Design basic menu options - 5 hr.
+
+Team Roles: 
+
+Aastha Verma: Product Owner, Information Gatherer, Researcher
+
+Sable Yemane: Artist, Researcher, Information Gatherer
+
+Paul Scherer: Scrum Master, Developer
+
+Cole Varner: Developer
