@@ -2,8 +2,8 @@ Sprint 2 Plan
 UCSC Bus Buddy 
 Team SPARC
 Sprint 2 will be completed on 11/06/13
-1.0
-Revision Date: 10/22/2013 
+1.1
+Revision Date: 10/23/2013 
 
 Sprint Goals:
 - Have an option for the next closest bus stop at current location
@@ -29,7 +29,9 @@ Total hours: 10 hrs.
 User Story 2: As a student user, I want the bus schedule for buses
 10-20 displayed on the app, so that I can see it. - 8 story points
 
-- Compile database of bus schedules and write modules to access it. - 6 hours
+- Compile database of bus schedules. - 5 hours
+
+- Write modules to access bus schedules. - 5  hours
 
 - Create a link from the main page to the full schedule page. - 1 hour
 Assigned to Cole
