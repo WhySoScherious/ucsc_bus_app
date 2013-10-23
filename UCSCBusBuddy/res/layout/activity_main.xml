@@ -17,7 +17,8 @@
         android:layout_alignRight="@+id/select_stop"
         android:layout_marginBottom="94dp"
         android:background="@drawable/mybutton"
-        android:text="Bus Schedule" />
+        android:text="Bus Schedule"
+        android:onClick="busSchedule" />
 
     <Button
         android:id="@+id/select_stop"
@@ -26,7 +27,8 @@
         android:layout_above="@+id/bus_schedule"
         android:layout_alignLeft="@+id/closest_stop"
         android:background="@drawable/mybutton"
-        android:text="Select a Stop" />
+        android:text="Select a Stop"
+        android:onClick="selectStop" />
 
     <Button
         android:id="@+id/closest_stop"
@@ -35,7 +37,8 @@
         android:layout_above="@+id/select_stop"
         android:layout_centerHorizontal="true"
         android:background="@drawable/mybutton"
-        android:text="Closest Stop" />
+        android:text="Closest Stop"
+        android:onClick="closestStop" />
 
     <TextView
         android:id="@+id/textView1"

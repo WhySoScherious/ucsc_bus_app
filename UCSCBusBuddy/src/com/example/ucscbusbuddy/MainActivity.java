@@ -5,9 +5,25 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.content.Intent;
 
 public class MainActivity extends Activity {
 
+	public void busSchedule(View view) {
+	    Intent intent = new Intent( this, BusScheduleActivity.class );
+	    startActivity( intent );
+	}
+
+	public void selectStop(View view) {
+	    Intent intent = new Intent( this, SelectStopActivity.class );
+	    startActivity( intent );
+	}
+
+	public void closestStop(View view) {
+	    Intent intent = new Intent( this, ClosestStopActivity.class );
+	    startActivity( intent );
+	}
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -22,6 +22,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.BusScheduleActivity"
+            android:label="@string/title_activity_bus_schedule"
+            android:parentActivityName="com.example.ucscbusbuddy.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.SelectStopActivity"
+            android:label="@string/title_activity_select_stop"
+            android:parentActivityName="com.example.ucscbusbuddy.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.ClosestStopActivity"
+            android:label="@string/title_activity_closest_stop"
+            android:parentActivityName="com.example.ucscbusbuddy.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
