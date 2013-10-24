@@ -9,34 +9,6 @@
     android:background="#D5FFFF"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/bus_schedule"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/select_stop"
-        android:layout_marginBottom="94dp"
-        android:background="@drawable/mybutton"
-        android:text="Bus Schedule" />
-
-    <Button
-        android:id="@+id/select_stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bus_schedule"
-        android:layout_alignLeft="@+id/closest_stop"
-        android:background="@drawable/mybutton"
-        android:text="Select a Stop" />
-
-    <Button
-        android:id="@+id/closest_stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/select_stop"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/mybutton"
-        android:text="Closest Stop" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -44,5 +16,36 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Developed by SPARC" />
+ 
+    <Button
+        android:id="@+id/closest_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/bus_schedule"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/mybutton"
+        android:onClick="closestStop"
+        android:text="Closest Stop" />
+
+    <Button
+        android:id="@+id/select_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/closest_stop"
+        android:layout_alignLeft="@+id/closest_stop"
+        android:background="@drawable/mybutton"
+        android:onClick="selectStop"
+        android:text="Select a Stop" />
+
+    <Button
+        android:id="@+id/bus_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/select_stop"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/mybutton"
+        android:onClick="busSchedule"
+        android:text="Bus Schedule" />
 
 </RelativeLayout>
