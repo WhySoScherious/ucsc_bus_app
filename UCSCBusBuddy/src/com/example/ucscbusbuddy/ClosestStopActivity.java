@@ -16,6 +16,7 @@ public class ClosestStopActivity extends Activity {
 		setContentView(R.layout.activity_closest_stop);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		setTitle ("Closest Stop");
 	}
 
 	/**

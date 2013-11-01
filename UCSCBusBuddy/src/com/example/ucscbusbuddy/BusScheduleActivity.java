@@ -16,6 +16,7 @@ public class BusScheduleActivity extends Activity {
 		setContentView(R.layout.activity_bus_schedule);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		setTitle ("Bus Schedule");
 	}
 
 	/**
