@@ -16,6 +16,7 @@ public class SelectStopActivity extends Activity {
 		setContentView(R.layout.activity_select_stop);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		setTitle ("Select a Stop");
 	}
 
 	/**

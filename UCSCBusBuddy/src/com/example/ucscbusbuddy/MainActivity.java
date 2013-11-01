@@ -10,17 +10,17 @@ import android.content.Intent;
 public class MainActivity extends Activity {
 
 	public void busSchedule(View view) {
-	    Intent intent = new Intent( this, BusScheduleActivity.class );
-	    startActivity( intent );
-	}
-
-	public void selectStop(View view) {
-	    Intent intent = new Intent( this, SelectStopActivity.class );
+	    Intent intent = new Intent(MainActivity.this, BusScheduleActivity.class );
 	    startActivity( intent );
 	}
 
 	public void closestStop(View view) {
-	    Intent intent = new Intent( this, ClosestStopActivity.class );
+	    Intent intent = new Intent(MainActivity.this, ClosestStopActivity.class );
+	    startActivity( intent );
+	}
+
+	public void selectStop(View view) {
+	    Intent intent = new Intent(MainActivity.this, SelectStopActivity.class );
 	    startActivity( intent );
 	}
 	
@@ -38,7 +38,12 @@ public class MainActivity extends Activity {
         Button toggleButton = (Button)findViewById(idButton);
         toggleButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                if (v.getId() == R.id.bus_schedule)
+                    busSchedule (v);
+                else if (v.getId() == R.id.closest_stop)
+                    closestStop (v);
+                else
+                    selectStop (v);
             }
         });
     }
