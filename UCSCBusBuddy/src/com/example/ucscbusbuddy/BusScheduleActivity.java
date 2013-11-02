@@ -52,5 +52,4 @@ public class BusScheduleActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 }

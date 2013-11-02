@@ -2,10 +2,10 @@ package com.example.ucscbusbuddy;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.content.Intent;
 
 public class MainActivity extends Activity {
 
@@ -28,12 +28,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        setButtonClickListener(R.id.bus_schedule);
-        setButtonClickListener(R.id.closest_stop);
-        setButtonClickListener(R.id.select_stop);
     }
-
+/*
+<<<<<<< HEAD
     private void setButtonClickListener(int idButton) {
         Button toggleButton = (Button)findViewById(idButton);
         toggleButton.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +43,22 @@ public class MainActivity extends Activity {
                     selectStop (v);
             }
         });
+=======
+    public void busSchedule( View view ){
+    	Intent intent = new Intent( this, BusScheduleActivity.class );
+    	startActivity( intent );
     }
+    
+    public void selectStop( View view ){
+    	Intent intent = new Intent( this, SelectStopActivity.class );
+    	startActivity( intent );
+    }
+    
+    public void closestStop( View view ){
+    	Intent intent = new Intent( this, ClosestStopActivity.class );
+    	startActivity( intent );
+>>>>>>> refs/heads/cole
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
