@@ -9,8 +9,79 @@
     tools:context=".BusScheduleActivity" >
 
     <TextView
+        android:id="@+id/textView1"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BUS SCHEDULE" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="1dp"
+        android:layout_centerHorizontal="true"
+        android:text="Select a Bus" />
+
+    <Button
+        android:id="@+id/activity_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_10"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/mybutton"
+        android:onClick="get10"
+        android:text="10" />
+
+    <Button
+        android:id="@+id/activity_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_10"
+        android:layout_below="@+id/activity_10"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mybutton"
+        android:onClick="get15"
+        android:text="15" />
+
+    <Button
+        android:id="@+id/activity_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_15"
+        android:layout_below="@+id/activity_15"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mybutton"
+        android:onClick="get16"
+        android:text="16" />
+
+    <Button
+        android:id="@+id/activity_19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_16"
+        android:layout_below="@+id/activity_16"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mybutton"
+        android:onClick="get19"
+        android:text="19" />
+    
+    <Button
+        android:id="@+id/activity_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_19"
+        android:layout_below="@+id/activity_19"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mybutton"
+        android:onClick="get20"
+        android:text="20" />
+
+    <Button
+        android:id="@+id/activity_nc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/activity_20"
+        android:layout_below="@+id/activity_20"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mybutton"
+        android:onClick="getNC"
+        android:text="NC" />
 
 </RelativeLayout>

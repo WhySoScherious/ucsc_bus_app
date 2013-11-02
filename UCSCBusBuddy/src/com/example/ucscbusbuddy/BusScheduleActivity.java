@@ -4,11 +4,43 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 
 public class BusScheduleActivity extends Activity {
+    public void get10(View view) {
+        Intent intent = new Intent(BusScheduleActivity.this, TenActivity.class );
+        startActivity( intent );
+    }
+
+    public void get15(View view) {
+        Intent intent = new Intent(BusScheduleActivity.this, FifteenActivity.class );
+        startActivity( intent );
+    }
+    
+    public void get16(View view) {
+        Intent intent = new Intent(BusScheduleActivity.this, SixteenActivity.class );
+        startActivity( intent );
+    }
+    
+    public void get19(View view) {
+        Intent intent = new Intent(BusScheduleActivity.this, NineteenActivity.class );
+        startActivity( intent );
+    }
+    
+    public void get20(View view) {
+        Intent intent = new Intent(BusScheduleActivity.this, TwentyActivity.class );
+        startActivity( intent );
+    }
+    
+    public void getNC(View view) {
+        Intent intent = new Intent(BusScheduleActivity.this, NCActivity.class );
+        startActivity( intent );
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +49,7 @@ public class BusScheduleActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		setTitle ("Bus Schedule");
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 
 	/**

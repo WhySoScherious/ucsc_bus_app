@@ -46,6 +46,54 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.ucscbusbuddy.MainActivity" />
         </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.TenActivity"
+            android:label="@string/title_activity_ten"
+            android:parentActivityName="com.example.ucscbusbuddy.BusScheduleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.BusScheduleActivity" />
+        </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.FifteenActivity"
+            android:label="@string/title_activity_fifteen"
+            android:parentActivityName="com.example.ucscbusbuddy.BusScheduleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.BusScheduleActivity" />
+        </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.SixteenActivity"
+            android:label="@string/title_activity_sixteen"
+            android:parentActivityName="com.example.ucscbusbuddy.BusScheduleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.BusScheduleActivity" />
+        </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.NineteenActivity"
+            android:label="@string/title_activity_nineteen"
+            android:parentActivityName="com.example.ucscbusbuddy.BusScheduleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.BusScheduleActivity" />
+        </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.TwentyActivity"
+            android:label="@string/title_activity_twenty"
+            android:parentActivityName="com.example.ucscbusbuddy.BusScheduleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.BusScheduleActivity" />
+        </activity>
+        <activity
+            android:name="com.example.ucscbusbuddy.NCActivity"
+            android:label="@string/title_activity_nc"
+            android:parentActivityName="com.example.ucscbusbuddy.BusScheduleActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ucscbusbuddy.BusScheduleActivity" />
+        </activity>
     </application>
 
 </manifest>
