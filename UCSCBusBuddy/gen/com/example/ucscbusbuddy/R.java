@@ -27,12 +27,12 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f08000a;
-        public static final int activity_10=0x7f080001;
-        public static final int activity_15=0x7f080002;
-        public static final int activity_16=0x7f080003;
-        public static final int activity_19=0x7f080004;
-        public static final int activity_20=0x7f080005;
-        public static final int activity_nc=0x7f080006;
+        public static final int bus10=0x7f080001;
+        public static final int bus15=0x7f080002;
+        public static final int bus16=0x7f080003;
+        public static final int bus19=0x7f080004;
+        public static final int bus20=0x7f080005;
+        public static final int busNC=0x7f080006;
         public static final int bus_schedule=0x7f080008;
         public static final int closest_stop=0x7f080007;
         public static final int select_stop=0x7f080009;
@@ -41,14 +41,8 @@ public final class R {
     public static final class layout {
         public static final int activity_bus_schedule=0x7f030000;
         public static final int activity_closest_stop=0x7f030001;
-        public static final int activity_fifteen=0x7f030002;
-        public static final int activity_main=0x7f030003;
-        public static final int activity_nc=0x7f030004;
-        public static final int activity_nineteen=0x7f030005;
-        public static final int activity_select_stop=0x7f030006;
-        public static final int activity_sixteen=0x7f030007;
-        public static final int activity_ten=0x7f030008;
-        public static final int activity_twenty=0x7f030009;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_select_stop=0x7f030003;
     }
     public static final class menu {
         public static final int bus_schedule=0x7f070000;

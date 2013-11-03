@@ -6,79 +6,80 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#D5FFFF"
     tools:context=".BusScheduleActivity" >
 
     <TextView
         android:id="@+id/textView1"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="1dp"
+        android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"
         android:text="Select a Bus" />
 
     <Button
-        android:id="@+id/activity_10"
+        android:id="@+id/bus10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_10"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="40dp"
+        android:layout_height="48dp"
+        android:layout_alignLeft="@+id/bus10"
+        android:layout_below="@+id/textView1"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/mybutton"
         android:onClick="get10"
         android:text="10" />
 
     <Button
-        android:id="@+id/activity_15"
+        android:id="@+id/bus15"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_10"
-        android:layout_below="@+id/activity_10"
-        android:layout_marginTop="20dp"
+        android:layout_height="48dp"
+        android:layout_alignLeft="@+id/bus10"
+        android:layout_below="@+id/bus10"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/mybutton"
         android:onClick="get15"
         android:text="15" />
 
     <Button
-        android:id="@+id/activity_16"
+        android:id="@+id/bus16"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_15"
-        android:layout_below="@+id/activity_15"
-        android:layout_marginTop="20dp"
+        android:layout_height="48dp"
+        android:layout_alignLeft="@+id/bus15"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/bus15"
         android:background="@drawable/mybutton"
         android:onClick="get16"
         android:text="16" />
 
     <Button
-        android:id="@+id/activity_19"
+        android:id="@+id/bus19"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_16"
-        android:layout_below="@+id/activity_16"
+        android:layout_height="48dp"
+        android:layout_alignLeft="@+id/bus16"
+        android:layout_below="@+id/bus16"
         android:layout_marginTop="20dp"
         android:background="@drawable/mybutton"
         android:onClick="get19"
         android:text="19" />
     
     <Button
-        android:id="@+id/activity_20"
+        android:id="@+id/bus20"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_19"
-        android:layout_below="@+id/activity_19"
+        android:layout_height="48dp"
+        android:layout_alignLeft="@+id/bus19"
+        android:layout_below="@+id/bus19"
         android:layout_marginTop="20dp"
         android:background="@drawable/mybutton"
         android:onClick="get20"
         android:text="20" />
 
     <Button
-        android:id="@+id/activity_nc"
+        android:id="@+id/busNC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/activity_20"
-        android:layout_below="@+id/activity_20"
+        android:layout_height="48dp"
+        android:layout_alignLeft="@+id/bus20"
+        android:layout_below="@+id/bus20"
         android:layout_marginTop="20dp"
         android:background="@drawable/mybutton"
         android:onClick="getNC"
