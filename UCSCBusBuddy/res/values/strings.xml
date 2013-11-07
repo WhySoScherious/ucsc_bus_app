@@ -7,5 +7,11 @@
     <string name="title_activity_bus_schedule">BusScheduleActivity</string>
     <string name="title_activity_select_stop">SelectStopActivity</string>
     <string name="title_activity_closest_stop">ClosestStopActivity</string>
+    <string name="title_activity_ten">TenActivity</string>
+    <string name="title_activity_fifteen">FifteenActivity</string>
+    <string name="title_activity_sixteen">SixteenActivity</string>
+    <string name="title_activity_nineteen">NineteenActivity</string>
+    <string name="title_activity_twenty">TwentyActivity</string>
+    <string name="title_activity_nc">NCActivity</string>
 
 </resources>

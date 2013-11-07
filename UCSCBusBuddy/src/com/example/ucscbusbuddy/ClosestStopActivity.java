@@ -36,7 +36,7 @@ public class ClosestStopActivity extends Activity {
 				mlocListener);
 	
 	}
-	
+
 	@Override
 	public void onPause() {
 	    mlocManager.removeUpdates(mlocListener);
