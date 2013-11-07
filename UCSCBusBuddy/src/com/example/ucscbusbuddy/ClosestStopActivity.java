@@ -1,15 +1,23 @@
 package com.example.ucscbusbuddy;
 
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.os.Build;
 
 public class ClosestStopActivity extends Activity {
 
+	private LocationListener mlocListener;
+	private LocationManager mlocManager;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -17,8 +25,33 @@ public class ClosestStopActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		setTitle ("Closest Stop");
+		
+		mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		mlocListener = new MyLocationListener();
+		
+		mlocManager.requestLocationUpdates(
+				LocationManager.GPS_PROVIDER,
+				0,
+				0,
+				mlocListener);
+	
+	}
+	
+	@Override
+	public void onPause() {
+	    mlocManager.removeUpdates(mlocListener);
+	    super.onPause();
 	}
 
+	@Override
+	public void onResume() {
+		mlocManager.requestLocationUpdates(
+				LocationManager.GPS_PROVIDER,
+				0,
+				0,
+				mlocListener);
+	    super.onResume();
+	}
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
@@ -51,5 +84,37 @@ public class ClosestStopActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public class MyLocationListener implements LocationListener{
+		
+		@Override
+		public void onLocationChanged(Location loc){
+		
+			String test = "latitude: "+loc.getLatitude()+"\n"+
+						  "longitude: "+loc.getLongitude();
+		
+			Toast.makeText( getApplicationContext(),
+							test,
+							Toast.LENGTH_SHORT).show();
+		
+		}
+		
+		@Override
+		public void onProviderDisabled(String provider){
+			Toast.makeText( getApplicationContext(),
+					        "GPS Disabled",
+					        Toast.LENGTH_SHORT).show();
+		}
+		
+		@Override
+		public void onProviderEnabled(String provider){
+			Toast.makeText( getApplicationContext(),
+			                "GPS Disabled",
+			                Toast.LENGTH_SHORT).show();
+		}
+		
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras){}
 	}
 }
