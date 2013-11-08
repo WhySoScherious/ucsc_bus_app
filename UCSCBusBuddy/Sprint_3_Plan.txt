@@ -2,7 +2,8 @@
 UCSC Bus Buddy 
 Team SPARC
 Sprint 3 will be completed on 12/05/13
-1.0 
+Version 1.1
+Revision Date: 11/08/2013
 
 Sprint Goals:
 - Have an option for the next closest bus stop at current location
@@ -15,48 +16,58 @@ Task Listings:
 User Story 1: As a student user, I want to be able to know the closest
 stop to me so that I can go to that stop. - 13 story points
 
-- Create a small Google Map cutout for the top of page.
+- Create a small Google Map cutout for the top of page. - 3 hours
+Assigned to Paul 
 
 - Create module to read stop coordinates from database to calculate
-closest stop.
+closest stop. - 3 hours
+Assigned to Sable
 
-Total hours:
+Total hours: 6 hours
 
 User Story 2: As a student user, I want to know when the next bus is
 coming at my current location, so I can determine whether I want to
-wait for the bus now. - 8 points
+wait for the bus now. - 5 points
 
 - Compile database of bus schedules. - 5 hours
+Assigned to Aastha
 
-- Write modules to access bus schedules. - 5 hours
+- Write modules to access database of bus schedules. - 5 hours
+Assigned to Cole
 
-- Get user's current time and grab next bus times at desired stops.
+- Get user's current time and grab next bus times at desired stops. - 3 hours
+Assigned to Paul
 
-Total hours:
+Total hours: 13 hours
 
 User Story 3: As a tester, I need to be able to test all of the
 functions implemented and make sure they are working properly. - 5 points
 
-- Test that each feature is working properly and as designed.
+- Test that each feature is working properly and as designed. - 3 hours
+Assigned to Sable
 
-Total hours:
+Total hours: 3 hours
 
 User Story 4: As a student user, I want an easy to use/navigate user
-interface so I can effectively use the mobile application. - 
+interface so I can effectively use the mobile application. - 8 story points
 
 - Display Google Maps pinpoints of desired bus stops. - 4 hours
-
+Assigned to Sable
+ 
 - Implement A/B (cross street) button. - 1 hour
+Assigned to Cole
 
-- Create linkable buttons from stop info page to link to schedules.
+- Create linkable buttons from stop info page to link to schedules. - 3 hours
+Assigned to Aastha
 
-- Create button for user manual in settings drop-down.
+- Create button for user manual in settings drop-down. - 2 hours
+Assigned to Aastha
 
-Total hours:
+Total hours: 10 hours
 
 User Story 5: As a student user, I want to be able to view the bus
 schedules without copying files to the device so that the application
-is easy to use. - 2 points
+is easy to use. - 1 points
 
 - Open files from the app rather than copying to disk. - 1 hour
 Assigned to Paul
