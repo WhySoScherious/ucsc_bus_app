@@ -1,0 +1,79 @@
+﻿Sprint 3 Plan
+UCSC Bus Buddy 
+Team SPARC
+Sprint 3 will be completed on 12/05/13
+1.0 
+
+Sprint Goals:
+- Have an option for the next closest bus stop at current location
+- Have bus stop icons on a map overlay
+- Completely test the app’s functions and usability
+- Create navigable and easy to use UI
+
+
+Task Listings: 
+User Story 1: As a student user, I want to be able to know the closest
+stop to me so that I can go to that stop. - 13 story points
+
+- Create a small Google Map cutout for the top of page.
+
+- Create module to read stop coordinates from database to calculate
+closest stop.
+
+Total hours:
+
+User Story 2: As a student user, I want to know when the next bus is
+coming at my current location, so I can determine whether I want to
+wait for the bus now. - 8 points
+
+- Compile database of bus schedules. - 5 hours
+
+- Write modules to access bus schedules. - 5 hours
+
+- Get user's current time and grab next bus times at desired stops.
+
+Total hours:
+
+User Story 3: As a tester, I need to be able to test all of the
+functions implemented and make sure they are working properly. - 5 points
+
+- Test that each feature is working properly and as designed.
+
+Total hours:
+
+User Story 4: As a student user, I want an easy to use/navigate user
+interface so I can effectively use the mobile application. - 
+
+- Display Google Maps pinpoints of desired bus stops. - 4 hours
+
+- Implement A/B (cross street) button. - 1 hour
+
+- Create linkable buttons from stop info page to link to schedules.
+
+- Create button for user manual in settings drop-down.
+
+Total hours:
+
+User Story 5: As a student user, I want to be able to view the bus
+schedules without copying files to the device so that the application
+is easy to use. - 2 points
+
+- Open files from the app rather than copying to disk. - 1 hour
+Assigned to Paul
+
+Total hours: 1 hour
+
+Team Roles: 
+Aastha Verma: Product Owner, Information Gatherer, Researcher
+
+Sable Yemane: Artist, Researcher, Information Gatherer
+
+Paul Scherer: Developer
+
+Cole Varner: Scrum Master, Developer
+
+Meeting Times:
+Tuesday: 4:45 pm
+Wednesday: 1:20 pm
+Thursday: 6:20 pm
+
