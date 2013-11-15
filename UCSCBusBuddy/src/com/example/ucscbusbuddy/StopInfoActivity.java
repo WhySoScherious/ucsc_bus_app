@@ -3,19 +3,22 @@ package com.example.ucscbusbuddy;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class StopInfoActivity extends Activity {
-    static LatLng stop;
+    static LatLng stop = null;  // Chosen bus stop coordinates
     private GoogleMap map;
     
     @Override
@@ -23,19 +26,20 @@ public class StopInfoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stop_info);
         
-     // Show the Up button in the action bar.
+        // Show the Up button in the action bar.
         setupActionBar();
-        
+
+        /*
+         * Get stop coordinates and bus stop name from callee activity
+         * to show.
+         */
         Bundle mBundle = getIntent().getBundleExtra("extras");
         if(mBundle != null) {
             setTitle (mBundle.getString("stopTitle"));
             stop = new LatLng(mBundle.getDouble("lat"), mBundle.getDouble("long"));
         }
-        initMaps();
 
-        map.addMarker(new MarkerOptions()
-            .position(stop)
-            .title("Hello world"));
+        initMaps();
     }
 
     /**
@@ -48,12 +52,45 @@ public class StopInfoActivity extends Activity {
         }
     }
 
+    /*
+     * Creates markers over the map overlay and sets up marker click
+     * listener.
+     */
+    private void createMarkers() {
+        map.addMarker(new MarkerOptions()
+            .position(stop)
+            .title("Bus Stop Title Here"));
+
+        map.setOnMarkerClickListener(new OnMarkerClickListener() {
+
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // Bundle will pass over variables to the stop
+                // information activity.
+                Bundle extras = new Bundle();
+                extras.putDouble("long", marker.getPosition().longitude);
+                extras.putDouble("lat", marker.getPosition().latitude);
+                extras.putString("stopTitle", marker.getTitle());
+                
+                Intent i = new Intent(StopInfoActivity.this, StopInfoActivity.class);
+                i.putExtra("extras", extras);
+                startActivity(i);
+                finish();
+                return true;
+            }
+        });
+    }
+
+    /*
+     * Initializes the Google Maps overlay.
+     */
     private void initMaps () {
         if (map == null) {
             map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                     .getMap();
-            if (map != null) {
+            if (map != null && stop != null) {
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(stop, 15));
+                createMarkers();
             }
         }
     }

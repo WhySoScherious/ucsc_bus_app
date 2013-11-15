@@ -30,12 +30,8 @@ public class SelectStopActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		setTitle ("Select a Stop");
-		
+
 		initMaps();
-		
-		map.addMarker(new MarkerOptions()
-            .position(SANTACRUZ)
-            .title("Bus Stop Title Here"));
 	}
 
 	/**
@@ -48,36 +44,55 @@ public class SelectStopActivity extends Activity {
 		}
 	}
 
+	/*
+	 * Creates markers over the map overlay and sets up marker click
+	 * listener.
+	 */
+	private void createMarkers() {
+	    map.addMarker(new MarkerOptions()
+            .position(SANTACRUZ)
+            .title("Bus Stop Title Here"));
+
+	    map.setOnMarkerClickListener(new OnMarkerClickListener() {
+
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // Bundle will pass over variables to the stop
+                // information activity.
+                Bundle extras = new Bundle();
+                extras.putDouble("long", marker.getPosition().longitude);
+                extras.putDouble("lat", marker.getPosition().latitude);
+                extras.putString("stopTitle", marker.getTitle());
+                
+                Intent i = new Intent(SelectStopActivity.this, StopInfoActivity.class);
+                i.putExtra("extras", extras);
+                startActivity(i);
+                return true;
+            }
+        });
+	}
+
+	/*
+     * Initializes the Google Maps overlay.
+     */
 	private void initMaps () {
 	    if (map == null) {
 	        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 	                .getMap();
 	        if (map != null) {
+	            // Start camera over Santa Cruz, CA
 	            map.moveCamera(CameraUpdateFactory.newLatLngZoom(SANTACRUZ, 13));
 
 	            GoogleMapOptions options = new GoogleMapOptions();
 	            options.mapType(GoogleMap.MAP_TYPE_SATELLITE)
-	            .compassEnabled(true)
-	            .rotateGesturesEnabled(true)
-	            .tiltGesturesEnabled(true);
+    	            .compassEnabled(true)
+    	            .rotateGesturesEnabled(true)
+    	            .tiltGesturesEnabled(true);
 
 	            map.setMyLocationEnabled(true);
+	            
+	            createMarkers();
 	        }
-	        map.setOnMarkerClickListener(new OnMarkerClickListener() {
-
-	            @Override
-	            public boolean onMarkerClick(Marker marker) {
-	                Bundle extras = new Bundle();
-                    extras.putDouble("long", marker.getPosition().longitude);
-                    extras.putDouble("lat", marker.getPosition().latitude);
-                    extras.putString("stopTitle", marker.getTitle());
-                    
-	                Intent i = new Intent(SelectStopActivity.this, StopInfoActivity.class);
-	                i.putExtra("extras", extras);
-	                startActivity(i);
-	                return true;
-	            }
-	        });
 	    }
 	}
 
