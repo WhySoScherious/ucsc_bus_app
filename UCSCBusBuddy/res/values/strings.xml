@@ -14,5 +14,7 @@
     <string name="title_activity_twenty">TwentyActivity</string>
     <string name="title_activity_nc">NCActivity</string>
     <string name="title_activity_show_bus_stop">ShowBusStop</string>
+    <string name="title_activity_selected_stop">SelectedStop</string>
+    <string name="title_activity_stop_info">StopInfoActivity</string>
 
 </resources>

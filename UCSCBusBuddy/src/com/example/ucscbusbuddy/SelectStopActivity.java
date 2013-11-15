@@ -2,33 +2,40 @@ package com.example.ucscbusbuddy;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.MapFragment;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 
 public class SelectStopActivity extends Activity {
     static final LatLng SANTACRUZ = new LatLng(36.9720, -122.0263);
     private GoogleMap map;
-    Location mCurrentLocation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_stop);
+		
 		// Show the Up button in the action bar.
 		setupActionBar();
 		setTitle ("Select a Stop");
 		
 		initMaps();
+		
+		map.addMarker(new MarkerOptions()
+            .position(SANTACRUZ)
+            .title("Bus Stop Title Here"));
 	}
 
 	/**
@@ -56,6 +63,21 @@ public class SelectStopActivity extends Activity {
 
 	            map.setMyLocationEnabled(true);
 	        }
+	        map.setOnMarkerClickListener(new OnMarkerClickListener() {
+
+	            @Override
+	            public boolean onMarkerClick(Marker marker) {
+	                Bundle extras = new Bundle();
+                    extras.putDouble("long", marker.getPosition().longitude);
+                    extras.putDouble("lat", marker.getPosition().latitude);
+                    extras.putString("stopTitle", marker.getTitle());
+                    
+	                Intent i = new Intent(SelectStopActivity.this, StopInfoActivity.class);
+	                i.putExtra("extras", extras);
+	                startActivity(i);
+	                return true;
+	            }
+	        });
 	    }
 	}
 
