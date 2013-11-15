@@ -1,5 +1,12 @@
 package com.example.ucscbusbuddy;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.MapFragment;
+
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -9,6 +16,9 @@ import android.annotation.TargetApi;
 import android.os.Build;
 
 public class SelectStopActivity extends Activity {
+    static final LatLng SANTACRUZ = new LatLng(36.9720, -122.0263);
+    private GoogleMap map;
+    Location mCurrentLocation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +27,8 @@ public class SelectStopActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		setTitle ("Select a Stop");
+		
+		initMaps();
 	}
 
 	/**
@@ -27,6 +39,24 @@ public class SelectStopActivity extends Activity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
+	}
+
+	private void initMaps () {
+	    if (map == null) {
+	        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+	                .getMap();
+	        if (map != null) {
+	            map.moveCamera(CameraUpdateFactory.newLatLngZoom(SANTACRUZ, 13));
+
+	            GoogleMapOptions options = new GoogleMapOptions();
+	            options.mapType(GoogleMap.MAP_TYPE_SATELLITE)
+	            .compassEnabled(true)
+	            .rotateGesturesEnabled(true)
+	            .tiltGesturesEnabled(true);
+
+	            map.setMyLocationEnabled(true);
+	        }
+	    }
 	}
 
 	@Override

@@ -13,5 +13,6 @@
     <string name="title_activity_nineteen">NineteenActivity</string>
     <string name="title_activity_twenty">TwentyActivity</string>
     <string name="title_activity_nc">NCActivity</string>
+    <string name="title_activity_show_bus_stop">ShowBusStop</string>
 
 </resources>
