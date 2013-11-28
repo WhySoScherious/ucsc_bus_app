@@ -1,0 +1,3 @@
+string [] 15mfArray= {6:57am, 7:54am, 8:29am, 8:53am, 9:42am, 10:09am, 11:03am, 11:10am, 11:18am, 11:54am, 12:07pm, 12:17pm, 12:37pm, 1:05pm, 1:46pm, 1:55pm, 2:07pm, 2:17pm, 2:34pm, 2:46pm, 2:55pm, 3:05pm, 3:16pm, 3:25pm, 3:55pm, 4:15pm, 4:25pm, 4:47pm, 4:47pm, 4:22pm, 5:14pm, 5:32pm, 6:20pm, 6:52pm, 7:15pm, 7:37pm, 8:07pm, 8:37pm, 9:07pm };
+string [] 19mfArray= {7:48am, 8:48am, 9:18am, 9:48am, 10:18am, 10:48am, 11:18am, 11:48am, 12:18pm, 12:48pm, 1:18pm, 1:48pm, 2:18pm, 2:48pm, 3:18pm, 3:48pm, 4:18pm, 4:48pm, 5:18pm, 5:48pm, 6:18pm, 6:48pm, 7:48pm, 8:48pm, 9:48pm, 10:48pm, 11:48pm };
+string [] 19ssArray= {10:18am, 10:48am, 11:18am, 11:48am, 12:18pm, 12:48pm, 1:18pm, 1:48pm, 2:18pm, 2:48pm, 3:18pm, 3:48pm, 4:18pm, 4:48pm, 5:18pm, 5:48pm, 6:18pm, 6:48pm, 7:18pm}; 
