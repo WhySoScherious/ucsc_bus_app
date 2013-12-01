@@ -1,5 +1,7 @@
 package com.example.ucscbusbuddy;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -13,6 +15,7 @@ import com.google.android.gms.maps.MapFragment;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
@@ -66,20 +69,36 @@ public class SelectStopActivity extends Activity {
 
             @Override
             public boolean onMarkerClick(Marker marker) {
-                // Bundle will pass over variables to the stop
-                // information activity.
-                Bundle extras = new Bundle();
-                extras.putDouble("long", marker.getPosition().longitude);
-                extras.putDouble("lat", marker.getPosition().latitude);
-                extras.putString("stopTitle", marker.getTitle());
-
-                Intent i = new Intent(SelectStopActivity.this, StopInfoActivity.class);
-                i.putExtra("extras", extras);
+                // Format number to cut off digits > 6.
+                NumberFormat df = new DecimalFormat ("#.000000");
+                double lat = Double.parseDouble(df.format(marker.getPosition().latitude));
+                double longitude = Double.parseDouble(df.format(marker.getPosition().longitude));
+                Intent i = new Intent(SelectStopActivity.this,
+                        StopInfoActivity.class);
+                Log.d ("Finding Stop", "Lat: " + lat + "  Long: " +
+                        longitude);
+                BusStop clickedBusStop = findBusStop (lat, longitude);
+                //Log.d ("Intent", "Passing" + clickedBusStop.toString() +
+                //        "to activity");
+                i.putExtra("selectedStop", clickedBusStop);
                 i.putParcelableArrayListExtra("busStops", scBusStops);
                 startActivity(i);
                 return true;
             }
         });
+    }
+
+    private BusStop findBusStop (double lat, double longitude) {
+        for (int index = 0; index < scBusStops.size(); index++) {
+            BusStop stop = scBusStops.get(index);
+            Log.d ("Finding Stop", "Lat: " + stop.getLat() + "  Long: " +
+                    stop.getLong());
+            if (stop.getLat() == lat && stop.getLong() == longitude) {
+                return stop;
+            }
+        }
+
+        return null;
     }
 
     /*

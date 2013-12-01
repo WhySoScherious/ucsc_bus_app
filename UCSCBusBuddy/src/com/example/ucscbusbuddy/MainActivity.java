@@ -166,7 +166,8 @@ public class MainActivity extends Activity {
 
         int hour = Integer.parseInt(time.substring(startOfHourIndex, endOfHourIndex));
         int minute = Integer.parseInt(time.substring(startOfMinuteIndex));
-        busTime.set(Calendar.HOUR, hour);
+        busTime.set(Calendar.AM_PM, Calendar.AM);
+        busTime.set(Calendar.HOUR_OF_DAY, hour);
         busTime.set(Calendar.MINUTE, minute);
         
         return busTime;

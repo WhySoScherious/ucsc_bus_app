@@ -1,8 +1,9 @@
 package com.example.ucscbusbuddy;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Locale;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -11,13 +12,23 @@ public class BusStop implements Parcelable{
     private String name;
     private double latitude;
     private double longitude;
-    private List<Calendar> bus10Times;
-    private List<Calendar> bus15Times;
-    private List<Calendar> bus16Times;
-    private List<Calendar> bus19Times;
-    private List<Calendar> bus20Times;
-    private List<Calendar> busncTimes;
-
+    private ArrayList<Calendar> bus10Times;
+    private ArrayList<Calendar> bus15Times;
+    private ArrayList<Calendar> bus16Times;
+    private ArrayList<Calendar> bus19Times;
+    private ArrayList<Calendar> bus20Times;
+    private ArrayList<Calendar> busncTimes;
+    private boolean tenHasMF;
+    private boolean tenHasSS;
+    private boolean fifteenHasMF;
+    private boolean fifteenHasSS;
+    private boolean sixteenHasMF;
+    private boolean sixteenHasSS;
+    private boolean nineteenHasMF;
+    private boolean nineteenHasSS;
+    private boolean twentyHasMF;
+    private boolean twentyHasSS;
+    
     public static final Parcelable.Creator<BusStop> CREATOR =
             new Parcelable.Creator<BusStop>() {
 
@@ -40,6 +51,16 @@ public class BusStop implements Parcelable{
         bus19Times = new ArrayList<Calendar>();
         bus20Times = new ArrayList<Calendar>();
         busncTimes = new ArrayList<Calendar>();
+        tenHasMF = false;
+        tenHasSS = false;
+        fifteenHasMF = false;
+        fifteenHasSS = false;
+        sixteenHasMF = false;
+        sixteenHasSS = false;
+        nineteenHasMF = false;
+        nineteenHasSS = false;
+        twentyHasMF = false;
+        twentyHasSS = false;
     }
 
     public BusStop (String aName) {
@@ -50,6 +71,16 @@ public class BusStop implements Parcelable{
         bus19Times = new ArrayList<Calendar>();
         bus20Times = new ArrayList<Calendar>();
         busncTimes = new ArrayList<Calendar>();
+        tenHasMF = false;
+        tenHasSS = false;
+        fifteenHasMF = false;
+        fifteenHasSS = false;
+        sixteenHasMF = false;
+        sixteenHasSS = false;
+        nineteenHasMF = false;
+        nineteenHasSS = false;
+        twentyHasMF = false;
+        twentyHasSS = false;
     }
 
     private BusStop (Parcel source) {
@@ -66,6 +97,46 @@ public class BusStop implements Parcelable{
 
     public double getLong () {
         return longitude;
+    }
+
+    public boolean get10HasMF () {
+        return tenHasMF;
+    }
+    
+    public boolean get10HasSS () {
+        return tenHasSS;
+    }
+    
+    public boolean get15HasMF () {
+        return fifteenHasMF;
+    }
+    
+    public boolean get15HasSS () {
+        return fifteenHasSS;
+    }
+    
+    public boolean get16HasMF () {
+        return sixteenHasMF;
+    }
+    
+    public boolean get16HasSS () {
+        return sixteenHasSS;
+    }
+    
+    public boolean get19HasMF () {
+        return nineteenHasMF;
+    }
+    
+    public boolean get19HasSS () {
+        return nineteenHasSS;
+    }
+    
+    public boolean get20HasMF () {
+        return twentyHasMF;
+    }
+    
+    public boolean get20HasSS () {
+        return twentyHasSS;
     }
 
     public void setLat (double aLat) {
@@ -112,7 +183,7 @@ public class BusStop implements Parcelable{
         source.readList(busncTimes, null);
     }
 
-    public List<Calendar> getBusTimes (String busNumber) {
+    public ArrayList<Calendar> getBusTimes (String busNumber) {
         if (busNumber.compareTo("10") == 0)
             return bus10Times;
 
@@ -137,18 +208,48 @@ public class BusStop implements Parcelable{
     public int addBusTime (String busNumber, Calendar busTime) {
         if (busNumber.compareTo("10") == 0) {
             bus10Times.add(busTime);
+            
+            if (busTime.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                tenHasMF = true;
+            } else {
+                tenHasSS = true;
+            }
             return 0;
         } else if (busNumber.compareTo("15") == 0) {
             bus15Times.add(busTime);
+            
+            if (busTime.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                fifteenHasMF = true;
+            } else {
+                fifteenHasSS = true;
+            }
             return 0;
         } else if (busNumber.compareTo("16") == 0) {
             bus16Times.add(busTime);
+            
+            if (busTime.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                sixteenHasMF = true;
+            } else {
+                sixteenHasSS = true;
+            }
             return 0;
         } else if (busNumber.compareTo("19") == 0) {
             bus19Times.add(busTime);
+            
+            if (busTime.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                nineteenHasMF = true;
+            } else {
+                nineteenHasSS = true;
+            }
             return 0;
         } else if (busNumber.compareTo("20") == 0) {
             bus20Times.add(busTime);
+            
+            if (busTime.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                twentyHasMF = true;
+            } else {
+                twentyHasSS = true;
+            }
             return 0;
         } else if (busNumber.compareTo("nc") == 0) {
             busncTimes.add(busTime);
@@ -156,6 +257,12 @@ public class BusStop implements Parcelable{
         }
 
         return 1;
+    }
+
+    public static String printTime (Calendar time) {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm", Locale.US);
+        String test = sdf.format(time.getTime());
+        return test;
     }
 
     @Override
