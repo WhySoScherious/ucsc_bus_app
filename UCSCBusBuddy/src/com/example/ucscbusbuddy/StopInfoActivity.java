@@ -1,5 +1,7 @@
 package com.example.ucscbusbuddy;
 
+import java.util.ArrayList;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -18,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class StopInfoActivity extends Activity {
+    ArrayList<BusStop> scBusStops;
     static LatLng stop = null;  // Chosen bus stop coordinates
     private GoogleMap map;
     
@@ -57,9 +60,14 @@ public class StopInfoActivity extends Activity {
      * listener.
      */
     private void createMarkers() {
-        map.addMarker(new MarkerOptions()
-            .position(stop)
-            .title("Bus Stop Title Here"));
+        scBusStops = getIntent().getParcelableArrayListExtra("busStops");
+        for (int index = 0; index < scBusStops.size(); index++) {
+            BusStop stop = scBusStops.get(index);
+            LatLng location = new LatLng(stop.getLat(), stop.getLong());
+            map.addMarker(new MarkerOptions()
+            .position(location)
+            .title(stop.getName()));
+        }
 
         map.setOnMarkerClickListener(new OnMarkerClickListener() {
 
@@ -74,6 +82,7 @@ public class StopInfoActivity extends Activity {
                 
                 Intent i = new Intent(StopInfoActivity.this, StopInfoActivity.class);
                 i.putExtra("extras", extras);
+                i.putParcelableArrayListExtra("busStops", scBusStops);
                 startActivity(i);
                 finish();
                 return true;
@@ -113,7 +122,10 @@ public class StopInfoActivity extends Activity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            NavUtils.navigateUpFromSameTask(this);
+            Intent upIntent = new Intent(this, SelectStopActivity.class);
+            upIntent.putParcelableArrayListExtra("busStops", scBusStops);
+
+            NavUtils.navigateUpTo(this, upIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);

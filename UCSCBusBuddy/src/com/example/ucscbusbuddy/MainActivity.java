@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +23,7 @@ import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+    ArrayList<BusStop> scBusStops = new ArrayList<BusStop>();
 
     public void busSchedule(View view) {
         Intent intent = new Intent(MainActivity.this, BusScheduleActivity.class );
@@ -32,11 +32,15 @@ public class MainActivity extends Activity {
 
     public void closestStop(View view) {
         Intent intent = new Intent(MainActivity.this, ClosestStopActivity.class );
+
+        intent.putParcelableArrayListExtra("busStops", scBusStops);
         startActivity( intent );
     }
 
     public void selectStop(View view) {
         Intent intent = new Intent(MainActivity.this, SelectStopActivity.class );
+        
+        intent.putParcelableArrayListExtra("busStops", scBusStops);
         startActivity( intent );
     }
 
@@ -44,7 +48,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        List<BusStop> scBusStops = new ArrayList<BusStop>();
 
         Log.d("BusStopList", "Start creating bus stop list");
         scBusStops = createBusStopList(scBusStops);
@@ -61,7 +64,7 @@ public class MainActivity extends Activity {
     /*
      * Returns an arraylist of Bus Stop objects.
      */
-    private List<BusStop> createBusStopList (List<BusStop> busStops) {
+    private ArrayList<BusStop> createBusStopList (ArrayList<BusStop> busStops) {
         AssetManager assetManager = getAssets();
         String[] busStopList = null;    // List of bus stop filenames
 
@@ -85,7 +88,7 @@ public class MainActivity extends Activity {
      * stops. 
      * Returns arraylist of BusStop objects with times.
      */
-    private List<BusStop> getBusStops (List<BusStop> busStops,
+    private ArrayList<BusStop> getBusStops (ArrayList<BusStop> busStops,
             String[] busStopFileNames) {
 
         for (int index = 0; index < busStopFileNames.length; index++) {
@@ -117,25 +120,33 @@ public class MainActivity extends Activity {
      */
     private BusStop parseFile (BusStop stop,
             BufferedReader reader) throws IOException {
+        // First line of file is the GPS coordinates of stop
+        String coordinates = reader.readLine();
+        
+        int commaIndex = coordinates.indexOf(',');
+        double latitude = Double.parseDouble(coordinates.substring(0, commaIndex));
+        double longitude = Double.parseDouble(coordinates.substring(commaIndex + 1));
+        stop.setLat (latitude);
+        stop.setLong(longitude);
+
         for (String line = reader.readLine(); line != null;
                 line = reader.readLine()) {
-            Log.d("BusStopList", line);
-            int dayOfWeekIndex = 0;
             String busNumber = new String (line);
 
-            // For each bus time in the file.
+            // Get the route of the bus.
             /*
-             * Note: A '0' in front of time represents M-F route time while
-             *       a '7' represents Sat-Sun route time.
+             * Note: A 'mf' represents M-F route time while
+             *       a 'ss' represents Sat-Sun route time.
              */
-            for (line = reader.readLine(); line.compareTo ("stop") != 0;
-                    line = reader.readLine()) {
-                Calendar busTime = setTime (line, stop);
-                Log.d("BusStopList", line);
+            String route = reader.readLine();
 
-                if (line.indexOf(dayOfWeekIndex) == '0') {
+            for (line = reader.readLine(); line != null &&
+                    line.compareTo ("stop") != 0; line = reader.readLine()) {
+                Calendar busTime = setTime (line, stop);
+
+                if (route.compareTo("mf") == 0) {
                     busTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                } else if (line.indexOf(dayOfWeekIndex) == '7') {
+                } else if (route.compareTo("ss") == 0) {
                     busTime.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
                 }
 
@@ -149,13 +160,12 @@ public class MainActivity extends Activity {
 
     private Calendar setTime (String time, BusStop stop) {
         Calendar busTime = Calendar.getInstance();
-        int startOfHourIndex = 2;
-        int endOfHourIndex = 4;
-        int startOfMinuteIndex = 5;
-        int endOfMinuteIndex = 7;
+        int startOfHourIndex = 0;
+        int endOfHourIndex = 2;
+        int startOfMinuteIndex = 3;
 
         int hour = Integer.parseInt(time.substring(startOfHourIndex, endOfHourIndex));
-        int minute = Integer.parseInt(time.substring(startOfMinuteIndex, endOfMinuteIndex));
+        int minute = Integer.parseInt(time.substring(startOfMinuteIndex));
         busTime.set(Calendar.HOUR, hour);
         busTime.set(Calendar.MINUTE, minute);
         
