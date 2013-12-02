@@ -13,26 +13,30 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+/*
+ * Implements Parcelable so that BusStops can be passed from one intent
+ * to another.
+ */
 public class BusStop implements Parcelable{
-    private String name;
-    private double latitude;
-    private double longitude;
-    private ArrayList<Calendar> bus10Times;
-    private ArrayList<Calendar> bus15Times;
-    private ArrayList<Calendar> bus16Times;
-    private ArrayList<Calendar> bus19Times;
-    private ArrayList<Calendar> bus20Times;
-    private ArrayList<Calendar> busncTimes;
-    private boolean tenHasMF;
-    private boolean tenHasSS;
-    private boolean fifteenHasMF;
-    private boolean fifteenHasSS;
-    private boolean sixteenHasMF;
-    private boolean sixteenHasSS;
-    private boolean nineteenHasMF;
-    private boolean nineteenHasSS;
-    private boolean twentyHasMF;
-    private boolean twentyHasSS;
+    private String name;                    // Name of bus stop
+    private double latitude;                // Latitude of bus stop
+    private double longitude;               // Longitude of bus stop
+    private ArrayList<Calendar> bus10Times; // List of times for bus 10 route
+    private ArrayList<Calendar> bus15Times; // List of times for bus 15 route
+    private ArrayList<Calendar> bus16Times; // List of times for bus 16 route
+    private ArrayList<Calendar> bus19Times; // List of times for bus 19 route
+    private ArrayList<Calendar> bus20Times; // List of times for bus 20 route
+    private ArrayList<Calendar> busncTimes; // List of times for bus nc route
+    private boolean tenHasMF;               // True if route 10 has a MF route
+    private boolean tenHasSS;               // True if route 10 has a SS route
+    private boolean fifteenHasMF;           // True if route 15 has a MF route
+    private boolean fifteenHasSS;           // True if route 15 has a MF route
+    private boolean sixteenHasMF;           // True if route 16 has a MF route
+    private boolean sixteenHasSS;           // True if route 16 has a MF route
+    private boolean nineteenHasMF;          // True if route 19 has a MF route
+    private boolean nineteenHasSS;          // True if route 19 has a MF route
+    private boolean twentyHasMF;            // True if route 20 has a MF route
+    private boolean twentyHasSS;            // True if route 20 has a MF route
     
     public static final Parcelable.Creator<BusStop> CREATOR =
             new Parcelable.Creator<BusStop>() {
@@ -208,6 +212,9 @@ public class BusStop implements Parcelable{
         twentyHasSS = source.readByte() != 0;
     }
 
+    /*
+     * Returns a list of bus times for a particular route passed.
+     */
     public ArrayList<Calendar> getBusTimes (String busNumber) {
         if (busNumber.compareTo("10") == 0)
             return bus10Times;
@@ -230,6 +237,9 @@ public class BusStop implements Parcelable{
         return null;
     }
 
+    /*
+     * Adds a bus time to the list of times for a given bus route.
+     */
     public int addBusTime (String busNumber, Calendar busTime) {
         if (busNumber.compareTo("10") == 0) {
             bus10Times.add(busTime);
@@ -284,6 +294,9 @@ public class BusStop implements Parcelable{
         return 1;
     }
 
+    /*
+     * Prints the time passed in 12-hour hh:mm format.
+     */
     public static String printTime (Calendar time) {
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm", Locale.US);
         String test = sdf.format(time.getTime());
@@ -291,7 +304,9 @@ public class BusStop implements Parcelable{
     }
 
     /*
-     * Returns an arraylist of Bus Stop objects.
+     * Returns an arraylist of Bus Stop objects located in the assets folder.
+     * This module begins the processes of parsing through bus stop files and
+     * created a list of bus stops.
      */
     public static ArrayList<BusStop> createBusStopList (AssetManager assetManager) {
         ArrayList<BusStop> busStops = new ArrayList<BusStop>();
@@ -380,7 +395,7 @@ public class BusStop implements Parcelable{
 
             for (line = reader.readLine(); line != null &&
                     line.compareTo ("stop") != 0; line = reader.readLine()) {
-                Calendar busTime = setTime (line, stop);
+                Calendar busTime = setTime (line);
 
                 if (route.compareTo("mf") == 0) {
                     busTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -399,7 +414,11 @@ public class BusStop implements Parcelable{
         return stop;
     }
 
-    private static Calendar setTime (String time, BusStop stop) {
+    /*
+     * Given a 24-hour formatted HH:mm time, convert it to a Calendar
+     * object and return it.
+     */
+    private static Calendar setTime (String time) {
         Calendar busTime = Calendar.getInstance();
         int startOfHourIndex = 0;
         int endOfHourIndex = 2;

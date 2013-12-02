@@ -27,11 +27,17 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
     ArrayList<BusStop> scBusStops = new ArrayList<BusStop>();
 
+    /*
+     * Called by clicking "Bus Schedule" button from main page.
+     */
     public void busSchedule(View view) {
         Intent intent = new Intent(MainActivity.this, BusScheduleActivity.class );
         startActivity( intent );
     }
 
+    /*
+     * Called by clicking "Closest Stop" button from main page.
+     */
     public void closestStop(View view) {
         Toast.makeText( getApplicationContext(),
                 "Calculating closest stop...",
@@ -42,11 +48,15 @@ public class MainActivity extends Activity {
         BusStop closestBusStop = getClosestStop ();
 
         if (closestBusStop != null) {
+            // Pass the bus stop object to the stop info activity.
             intent.putExtra("selectedStop", closestBusStop);
             startActivity( intent );
         }
     }
 
+    /*
+     * Called by clicking "Select a Stop" button from main page.
+     */
     public void selectStop(View view) {
         Intent intent = new Intent(MainActivity.this, SelectStopActivity.class );
         startActivity( intent );
@@ -69,6 +79,10 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    /*
+     *  Set application criteria for selecting a location provider
+     *  for acquiring the user's location.
+     */
     private Criteria setCriteria () {
         Criteria criteria = new Criteria();
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
@@ -81,7 +95,14 @@ public class MainActivity extends Activity {
         return criteria;
     }
 
+    /*
+     * Returns the closest BusStop of the user, which is obtained from
+     * their location coordinates.
+     */
     private BusStop getClosestStop () {
+        /*
+         * Initialize location manager and get the user's location.
+         */
         LocationListener mlocListener;
         LocationManager mlocManager;
         
@@ -92,8 +113,12 @@ public class MainActivity extends Activity {
 
         String provider = mlocManager.getBestProvider(criteria, true);
         mlocManager.requestLocationUpdates(provider, 0, 0, mlocListener);
-        
         Location myLoc = mlocManager.getLastKnownLocation(provider);
+
+        /*
+         * Iterate through all BusStops, computing the shortest distance
+         * between the stop and the user.
+         */
         double myLat = myLoc.getLatitude();
         double myLong = myLoc.getLongitude();
         float[] calculatedDistance = new float[1];

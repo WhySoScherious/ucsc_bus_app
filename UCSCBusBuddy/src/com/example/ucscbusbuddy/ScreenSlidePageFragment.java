@@ -18,8 +18,12 @@ public class ScreenSlidePageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_screen_slide_page, container, false);
 
+        // TextView of bus times
         TextView tv = (TextView) rootView.findViewById(R.id.busTimes);
+        
+        // TextView of title printing the bus route number
         TextView title = (TextView) rootView.findViewById(R.id.title);
+
         String busRoute = getArguments().getString("busRoute");
         ArrayList<String> busTimes = getArguments().getStringArrayList("times");
 
@@ -42,7 +46,12 @@ public class ScreenSlidePageFragment extends Fragment {
 
         return f;
     }
-    
+
+    /*
+     * From the passed in list of Calendar objects representing bus times,
+     * converts the Calendar objects to a time of a String format,
+     * and returns them as an arraylist.
+     */
     public static ArrayList<String> strGetBusTimes (ArrayList<Calendar> busTimes) {
         int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
 

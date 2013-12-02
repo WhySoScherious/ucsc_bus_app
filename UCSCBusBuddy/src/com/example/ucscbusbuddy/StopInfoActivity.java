@@ -27,12 +27,12 @@ import android.view.MenuItem;
 
 public class StopInfoActivity extends FragmentActivity {
 
-    private ViewPager mPager;
+    private ViewPager mPager;           // This is the page slider
     private PagerAdapter mPagerAdapter;
 
-    BusStop selectedStop = null;
-    static LatLng stop = null;  // Chosen bus stop coordinates
-    private GoogleMap map;
+    BusStop selectedStop = null;        // Previously selected stop
+    static LatLng stop = null;          // Chosen bus stop coordinates
+    private GoogleMap map;              // Google map layout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +80,8 @@ public class StopInfoActivity extends FragmentActivity {
     }
 
     /*
-     * Creates markers over the map overlay and sets up marker click
-     * listener.
+     * Creates marker of selected stop over the map overlay and sets
+     * up marker click listener.
      */
     private void createMarkers() {
         map.addMarker(new MarkerOptions()
@@ -111,9 +111,11 @@ public class StopInfoActivity extends FragmentActivity {
         }
     }
 
+    /*
+     * Initializes the page slider for the bus times.
+     */
     private void createSlidePagerAdapter () {
         ArrayList<String> busRoutesRunning = getBusRoutesForDay();
-        Log.d ("Slider", busRoutesRunning.toString());
         mPager = (ViewPager) findViewById (R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter
                 (getSupportFragmentManager(), selectedStop,
@@ -129,8 +131,8 @@ public class StopInfoActivity extends FragmentActivity {
         ArrayList<String> busRoutes = new ArrayList<String>();
         int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
 
-        // If the current day is M-F, look for times with Monday
-        // Else, look for times with Sunday
+        // If the current day is M-F, check for routes running today
+        // Else, look for routes running for SS.
         if (currentDay > 1 && currentDay < 7) {
             if (selectedStop.get10HasMF()) {
                 busRoutes.add("10");
@@ -209,8 +211,8 @@ public class StopInfoActivity extends FragmentActivity {
     }
 
     /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
+     * A simple pager adapter that represents ScreenSlidePageFragment objects, in
+     * sequence. Each fragment will list bus times for a particular route.
      */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         private BusStop stop;

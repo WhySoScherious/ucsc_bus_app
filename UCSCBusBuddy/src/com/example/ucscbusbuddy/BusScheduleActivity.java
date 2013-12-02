@@ -101,7 +101,11 @@ public class BusScheduleActivity extends Activity {
             Log.e("copyAssets()", e.getMessage());
         }
     }
-    
+
+	/*
+	 * Obtains the bus schedule specified by filename and opens it
+	 * in the user's PDF viewer app.
+	 */
     private void getSchedule(String filename) {
         String sdCardPath = Environment.getExternalStorageDirectory().getPath() + "/Download/" + filename;
         Log.i("sd card path", sdCardPath);

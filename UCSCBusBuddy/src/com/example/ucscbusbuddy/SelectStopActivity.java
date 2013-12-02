@@ -77,6 +77,8 @@ public class SelectStopActivity extends Activity {
                 Log.d ("Finding Stop", "Lat: " + lat + "  Long: " +
                         longitude);
                 BusStop clickedBusStop = findBusStop (lat, longitude);
+                
+                // Pass BusStop to information activity
                 i.putExtra("selectedStop", clickedBusStop);
                 startActivity(i);
                 return true;
@@ -84,6 +86,11 @@ public class SelectStopActivity extends Activity {
         });
     }
 
+    /*
+     * Iterates through list of bus stops, return the bus stop object
+     * matching the passed latitude and longitude.
+     * Returns null if no stop was found matching the coordinates.
+     */
     private BusStop findBusStop (double lat, double longitude) {
         for (int index = 0; index < scBusStops.size(); index++) {
             BusStop stop = scBusStops.get(index);
