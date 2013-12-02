@@ -111,8 +111,9 @@ public class MainActivity extends Activity {
 
         Criteria criteria = setCriteria ();
 
+        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                35000, 10, mlocListener);
         String provider = mlocManager.getBestProvider(criteria, true);
-        mlocManager.requestLocationUpdates(provider, 0, 0, mlocListener);
         Location myLoc = mlocManager.getLastKnownLocation(provider);
 
         /*
