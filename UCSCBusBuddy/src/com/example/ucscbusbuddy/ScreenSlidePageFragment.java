@@ -19,8 +19,11 @@ public class ScreenSlidePageFragment extends Fragment {
                 R.layout.fragment_screen_slide_page, container, false);
 
         TextView tv = (TextView) rootView.findViewById(R.id.busTimes);
+        TextView title = (TextView) rootView.findViewById(R.id.title);
+        String busRoute = getArguments().getString("busRoute");
         ArrayList<String> busTimes = getArguments().getStringArrayList("times");
 
+        title.setText ("Bus " + busRoute + " Times");
         for (int index = 0; index < busTimes.size(); index++) {
             tv.append(busTimes.get(index) + "\n");
         }
@@ -28,10 +31,11 @@ public class ScreenSlidePageFragment extends Fragment {
         return rootView;
     }
 
-    public static ScreenSlidePageFragment newInstance(ArrayList<Calendar> times) {
+    public static ScreenSlidePageFragment newInstance(ArrayList<Calendar> times, String busRoute) {
 
         ScreenSlidePageFragment f = new ScreenSlidePageFragment();
         Bundle b = new Bundle();
+        b.putString("busRoute", busRoute);
         b.putStringArrayList ("times", strGetBusTimes (times));
 
         f.setArguments(b);
@@ -44,7 +48,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
         // If the current day is M-F, look for times with Monday
         // Else, look for times with Sunday
-        if (currentDay > 0 && currentDay < 6) {
+        if (currentDay > 1 && currentDay < 7) {
             currentDay = Calendar.MONDAY;
         } else {
             currentDay = Calendar.SUNDAY;

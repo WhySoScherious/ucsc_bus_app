@@ -56,7 +56,6 @@ public class SelectStopActivity extends Activity {
      */
     private void createMarkers() {
         scBusStops = getIntent().getParcelableArrayListExtra("busStops");
-
         for (int index = 0; index < scBusStops.size(); index++) {
             BusStop stop = scBusStops.get(index);
             LatLng location = new LatLng(stop.getLat(), stop.getLong());

@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 
     public void selectStop(View view) {
         Intent intent = new Intent(MainActivity.this, SelectStopActivity.class );
-        
+        Log.d("Main", "19: " + scBusStops.get(0).get19HasSS());
         intent.putParcelableArrayListExtra("busStops", scBusStops);
         startActivity( intent );
     }
@@ -101,7 +101,8 @@ public class MainActivity extends Activity {
                 Log.d("BusStopList", "Call parseFile");
                 stop = parseFile (stop, reader);
                 Log.d("BusStopList", "Add " + busStopFileNames[index] + " to list");
-                busStops.add(stop);
+                if (stop != null)
+                    busStops.add(stop);
             } catch (IOException e) {
                 Log.e("assets",
                         "bus_stop_files/" + busStopFileNames[index] + " not found");
@@ -122,12 +123,20 @@ public class MainActivity extends Activity {
             BufferedReader reader) throws IOException {
         // First line of file is the GPS coordinates of stop
         String coordinates = reader.readLine();
-        
-        int commaIndex = coordinates.indexOf(',');
-        double latitude = Double.parseDouble(coordinates.substring(0, commaIndex));
-        double longitude = Double.parseDouble(coordinates.substring(commaIndex + 1));
-        stop.setLat (latitude);
-        stop.setLong(longitude);
+
+        try {
+            int commaIndex = coordinates.indexOf(',');
+            double latitude = Double.parseDouble(coordinates.substring(0, commaIndex));
+            double longitude = Double.parseDouble(coordinates.substring(commaIndex + 1));
+            stop.setLat (latitude);
+            stop.setLong(longitude);
+        } catch (NumberFormatException e) {
+            Log.e ("parseFile", stop.getName() + ": Invalid GPS coordinate, skipping file");
+            return null;
+        } catch (StringIndexOutOfBoundsException e) {
+            Log.e ("parseFile", stop.getName() + ": Invalid GPS coordinate, skipping file");
+            return null;
+        }
 
         for (String line = reader.readLine(); line != null;
                 line = reader.readLine()) {
@@ -148,6 +157,9 @@ public class MainActivity extends Activity {
                     busTime.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                 } else if (route.compareTo("ss") == 0) {
                     busTime.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                } else {
+                    Log.e ("parseFile", stop.getName() +
+                            ": Invalid day of week route in file");
                 }
 
                 if (stop.addBusTime(busNumber, busTime) == 1) {
@@ -169,7 +181,7 @@ public class MainActivity extends Activity {
         busTime.set(Calendar.AM_PM, Calendar.AM);
         busTime.set(Calendar.HOUR_OF_DAY, hour);
         busTime.set(Calendar.MINUTE, minute);
-        
+
         return busTime;
     }
 

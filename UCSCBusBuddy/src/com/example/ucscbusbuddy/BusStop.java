@@ -163,6 +163,16 @@ public class BusStop implements Parcelable{
         dest.writeList(bus19Times);
         dest.writeList(bus20Times);
         dest.writeList(busncTimes);
+        dest.writeByte((byte) (tenHasMF ? 1 : 0));
+        dest.writeByte((byte) (tenHasSS ? 1 : 0));
+        dest.writeByte((byte) (fifteenHasMF ? 1 : 0));
+        dest.writeByte((byte) (fifteenHasSS ? 1 : 0));
+        dest.writeByte((byte) (sixteenHasMF ? 1 : 0));
+        dest.writeByte((byte) (sixteenHasSS ? 1 : 0));
+        dest.writeByte((byte) (nineteenHasMF ? 1 : 0));
+        dest.writeByte((byte) (nineteenHasSS ? 1 : 0));
+        dest.writeByte((byte) (twentyHasMF ? 1 : 0));
+        dest.writeByte((byte) (twentyHasSS ? 1 : 0));
     }
 
     public void readFromParcel(Parcel source) {
@@ -181,6 +191,16 @@ public class BusStop implements Parcelable{
         source.readList(bus20Times, null);
         busncTimes = new ArrayList<Calendar>();
         source.readList(busncTimes, null);
+        tenHasMF = source.readByte() != 0;
+        tenHasSS = source.readByte() != 0;
+        fifteenHasMF = source.readByte() != 0;
+        fifteenHasSS = source.readByte() != 0;
+        sixteenHasMF = source.readByte() != 0;
+        sixteenHasSS = source.readByte() != 0;
+        nineteenHasMF = source.readByte() != 0;
+        nineteenHasSS = source.readByte() != 0;
+        twentyHasMF = source.readByte() != 0;
+        twentyHasSS = source.readByte() != 0;
     }
 
     public ArrayList<Calendar> getBusTimes (String busNumber) {

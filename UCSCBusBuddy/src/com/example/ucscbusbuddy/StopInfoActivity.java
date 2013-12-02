@@ -115,6 +115,7 @@ public class StopInfoActivity extends FragmentActivity {
 
     private void createSlidePagerAdapter () {
         ArrayList<String> busRoutesRunning = getBusRoutesForDay();
+        Log.d ("Slider", busRoutesRunning.toString());
         mPager = (ViewPager) findViewById (R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter
                 (getSupportFragmentManager(), selectedStop,
@@ -132,7 +133,7 @@ public class StopInfoActivity extends FragmentActivity {
 
         // If the current day is M-F, look for times with Monday
         // Else, look for times with Sunday
-        if (currentDay > 0 && currentDay < 6) {
+        if (currentDay > 1 && currentDay < 7) {
             if (selectedStop.get10HasMF()) {
                 busRoutes.add("10");
             }
@@ -153,22 +154,27 @@ public class StopInfoActivity extends FragmentActivity {
                 busRoutes.add("20");
             }
         } else {
+            Log.d ("Slider", "10: " + String.valueOf(selectedStop.get10HasSS()));
             if (selectedStop.get10HasSS()) {
                 busRoutes.add("10");
             }
             
+            Log.d ("Slider", "15: " + String.valueOf(selectedStop.get15HasSS()));
             if (selectedStop.get15HasSS()) {
                 busRoutes.add("15");
             }
             
+            Log.d ("Slider", "16: " + String.valueOf(selectedStop.get16HasSS()));
             if (selectedStop.get16HasSS()) {
                 busRoutes.add("16");
             }
             
+            Log.d ("Slider", "19: " + String.valueOf(selectedStop.get19HasSS()));
             if (selectedStop.get19HasSS()) {
                 busRoutes.add("19");
             }
             
+            Log.d ("Slider", "20: " + String.valueOf(selectedStop.get20HasSS()));
             if (selectedStop.get20HasSS()) {
                 busRoutes.add("20");
             }
@@ -225,7 +231,7 @@ public class StopInfoActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             String busRoute = routesRunning.get(position);
-            return ScreenSlidePageFragment.newInstance(stop.getBusTimes(busRoute));
+            return ScreenSlidePageFragment.newInstance(stop.getBusTimes(busRoute), busRoute);
         }
 
         @Override
