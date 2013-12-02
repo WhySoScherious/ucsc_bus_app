@@ -59,5 +59,15 @@
             android:background="@drawable/mybutton"
             android:onClick="getManual"
             android:text="User Manual" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/bus_schedule"
+            android:layout_alignLeft="@+id/bus_schedule"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/slug" />
     
 </RelativeLayout>
