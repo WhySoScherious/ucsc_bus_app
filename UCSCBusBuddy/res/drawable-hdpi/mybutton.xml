@@ -3,7 +3,7 @@
     <item android:state_enabled="false" 
      android:drawable="@drawable/mybutton_normal" />
     <item android:state_enabled="true" 
-     android:state_pressed="true" android:drawable="@drawable/mybutton_normal" />
+     android:state_pressed="true" android:drawable="@drawable/mybutton_pressed" />
     <item android:state_enabled="true"
      android:state_focused="true" android:drawable="@drawable/mybutton_normal" />
     <item android:state_enabled="true"
