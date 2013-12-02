@@ -31,7 +31,6 @@ public class StopInfoActivity extends FragmentActivity {
     private PagerAdapter mPagerAdapter;
 
     BusStop selectedStop = null;
-    ArrayList<BusStop> scBusStops;
     static LatLng stop = null;  // Chosen bus stop coordinates
     private GoogleMap map;
 
@@ -43,7 +42,6 @@ public class StopInfoActivity extends FragmentActivity {
         // Show the Up button in the action bar.
         setupActionBar();
 
-        scBusStops = getIntent().getParcelableArrayListExtra("busStops");
         /*
          * Get stop coordinates and bus stop name from callee activity
          * to show.
@@ -202,7 +200,6 @@ public class StopInfoActivity extends FragmentActivity {
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
             Intent upIntent = new Intent(this, SelectStopActivity.class);
-            upIntent.putParcelableArrayListExtra("busStops", scBusStops);
 
             NavUtils.navigateUpTo(this, upIntent);
             return true;
