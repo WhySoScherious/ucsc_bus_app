@@ -6,11 +6,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.util.Log;
@@ -27,8 +33,18 @@ public class MainActivity extends Activity {
     }
 
     public void closestStop(View view) {
-        Intent intent = new Intent(MainActivity.this, ClosestStopActivity.class );
-        startActivity( intent );
+        Toast.makeText( getApplicationContext(),
+                "Calculating closest stop...",
+                Toast.LENGTH_SHORT).show();
+        
+        Intent intent = new Intent(MainActivity.this, StopInfoActivity.class );
+
+        BusStop closestBusStop = getClosestStop ();
+
+        if (closestBusStop != null) {
+            intent.putExtra("selectedStop", closestBusStop);
+            startActivity( intent );
+        }
     }
 
     public void selectStop(View view) {
@@ -40,6 +56,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        AssetManager assetManager = getAssets();
+        
+        scBusStops = BusStop.createBusStopList(assetManager);
     }
 
     @Override
@@ -47,6 +67,52 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    private Criteria setCriteria () {
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setCostAllowed(false);
+        criteria.setSpeedRequired(false);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+        
+        return criteria;
+    }
+
+    private BusStop getClosestStop () {
+        LocationListener mlocListener;
+        LocationManager mlocManager;
+        
+        mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        mlocListener = new MyLocationListener();
+
+        Criteria criteria = setCriteria ();
+
+        String provider = mlocManager.getBestProvider(criteria, true);
+        mlocManager.requestLocationUpdates(provider, 0, 0, mlocListener);
+        
+        Location myLoc = mlocManager.getLastKnownLocation(provider);
+        double myLat = myLoc.getLatitude();
+        double myLong = myLoc.getLongitude();
+        float[] calculatedDistance = new float[1];
+        float shortestDistance = Float.MAX_VALUE;
+        BusStop closestBusStop = null;
+  
+        for (int index = 0; index < scBusStops.size(); index++) {
+            BusStop indexedStop = scBusStops.get(index);
+            double stopLat = indexedStop.getLat();
+            double stopLong = indexedStop.getLong();
+            Location.distanceBetween (myLat, myLong, stopLat, stopLong,
+                    calculatedDistance);
+            if (calculatedDistance[0] < shortestDistance) {
+                shortestDistance = calculatedDistance[0];
+                closestBusStop = indexedStop;
+            }
+        }
+        
+        return closestBusStop;
     }
 
     private void copyFile(InputStream in, OutputStream out) throws IOException {
@@ -113,5 +179,27 @@ public class MainActivity extends Activity {
         }
     }
 
+    public class MyLocationListener implements LocationListener{
 
+        @Override
+        public void onLocationChanged(Location loc){
+        }
+
+        @Override
+        public void onProviderDisabled(String provider){
+            Toast.makeText( getApplicationContext(),
+                    "GPS Disabled",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onProviderEnabled(String provider){
+            Toast.makeText( getApplicationContext(),
+                    "GPS Enabled",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras){}
+    }
 }
