@@ -49,7 +49,7 @@ public class ScreenSlidePageFragment extends Fragment {
         return rootView;
     }
 
-    public static ScreenSlidePageFragment newInstance(ArrayList<Calendar> times, String busRoute, int pageCount, int position) {
+    public static ScreenSlidePageFragment newInstance(ArrayList<Calendar> times, String busRoute, int pageCount, int position ) {
 
         ScreenSlidePageFragment f = new ScreenSlidePageFragment();
         Bundle b = new Bundle();
