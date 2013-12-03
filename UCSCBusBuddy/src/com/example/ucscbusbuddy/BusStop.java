@@ -342,11 +342,12 @@ public class BusStop implements Parcelable{
                         (new InputStreamReader(assetManager.
                                 open("bus_stop_files/" + busStopFileNames[index])));
                 BusStop stop = new BusStop (busStopFileNames[index]);
-                Log.d("BusStopList", "Call parseFile");
                 stop = parseFile (stop, reader);
-                Log.d("BusStopList", "Add " + busStopFileNames[index] + " to list");
-                if (stop != null)
+                if (stop != null) {
+                    Log.d("BusStopList", "Add " + busStopFileNames[index] + " to list");
                     busStops.add(stop);
+                } else
+                    Log.e ("parseFile", busStopFileNames[index] + " not added");
             } catch (IOException e) {
                 Log.e("assets",
                         "bus_stop_files/" + busStopFileNames[index] + " not found");

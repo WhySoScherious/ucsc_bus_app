@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,6 +26,9 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
     ArrayList<BusStop> scBusStops = new ArrayList<BusStop>();
 
+    LocationListener mlocListener;
+    LocationManager mlocManager;
+
     /*
      * Called by clicking "Bus Schedule" button from main page.
      */
@@ -43,7 +45,7 @@ public class MainActivity extends Activity {
                 "Calculating closest stop...",
                 Toast.LENGTH_SHORT).show();
         
-        Intent intent = new Intent(MainActivity.this, StopInfoActivity.class );
+        Intent intent = new Intent (MainActivity.this, StopInfoActivity.class );
 
         BusStop closestBusStop = getClosestStop ();
 
@@ -67,6 +69,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        getUsersLoc();
         AssetManager assetManager = getAssets();
         
         scBusStops = BusStop.createBusStopList(assetManager);
@@ -79,20 +82,17 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    /*
-     *  Set application criteria for selecting a location provider
-     *  for acquiring the user's location.
-     */
-    private Criteria setCriteria () {
-        Criteria criteria = new Criteria();
-        criteria.setAccuracy(Criteria.ACCURACY_FINE);
-        criteria.setAltitudeRequired(false);
-        criteria.setBearingRequired(false);
-        criteria.setCostAllowed(false);
-        criteria.setSpeedRequired(false);
-        criteria.setPowerRequirement(Criteria.POWER_LOW);
-        
-        return criteria;
+    private void getUsersLoc () {
+        /*
+         * Initialize location manager and get the user's location.
+         */
+        mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        mlocListener = new MyLocationListener();
+
+        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                0, 0, mlocListener);
+        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                0, 0, mlocListener);
     }
 
     /*
@@ -100,22 +100,13 @@ public class MainActivity extends Activity {
      * their location coordinates.
      */
     private BusStop getClosestStop () {
-        /*
-         * Initialize location manager and get the user's location.
-         */
-        LocationListener mlocListener;
-        LocationManager mlocManager;
-        
-        mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        mlocListener = new MyLocationListener();
-
-        Criteria criteria = setCriteria ();
-
         mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                35000, 10, mlocListener);
-        String provider = mlocManager.getBestProvider(criteria, true);
-        Location myLoc = mlocManager.getLastKnownLocation(provider);
+                0, 0, mlocListener);
 
+        //String provider = mlocManager.getBestProvider(criteria, true);
+        Location myLoc = mlocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        mlocManager.removeUpdates(mlocListener);
         /*
          * Iterate through all BusStops, computing the shortest distance
          * between the stop and the user.
@@ -208,7 +199,7 @@ public class MainActivity extends Activity {
     public class MyLocationListener implements LocationListener{
 
         @Override
-        public void onLocationChanged(Location loc){
+        public void onLocationChanged (Location loc) {
         }
 
         @Override

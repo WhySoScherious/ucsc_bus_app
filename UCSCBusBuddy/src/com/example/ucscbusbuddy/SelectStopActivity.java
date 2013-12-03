@@ -55,8 +55,11 @@ public class SelectStopActivity extends Activity {
      * listener.
      */
     private void createMarkers() {
+        Log.d ("Markers", "Number of markers: " + scBusStops.size());
         for (int index = 0; index < scBusStops.size(); index++) {
             BusStop stop = scBusStops.get(index);
+            Log.d ("Markers", "Lat: " + stop.getLat() + "  Long: " +
+                    stop.getLong());
             LatLng location = new LatLng(stop.getLat(), stop.getLong());
             map.addMarker(new MarkerOptions()
             .position(location)
@@ -101,6 +104,7 @@ public class SelectStopActivity extends Activity {
             }
         }
 
+        Log.e ("Finding Stop", "Bus stop not found");
         return null;
     }
 
