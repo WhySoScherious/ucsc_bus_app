@@ -14,13 +14,9 @@
   limitations under the License.
   -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <!-- Dummy content. -->
-    <LinearLayout android:layout_width="match_parent"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
@@ -29,15 +25,41 @@
             style="?android:textAppearanceLarge"
             android:textStyle="bold"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
             android:layout_marginBottom="16dp" />
 
-        <TextView style="?android:textAppearanceMedium"
-            android:lineSpacingMultiplier="1.2"
+        <LinearLayout android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/busTimes" />
+            android:layout_weight="0.9"
+            android:layout_height="0dp" >
+        
+        	<ImageView android:id="@+id/left_arrow"
+        	    android:layout_width="0dp"
+        	    android:layout_weight="0.1"
+        	    android:layout_height="wrap_content"
+        	    android:layout_gravity="center" />
+        	
+        	<ScrollView android:id="@+id/content"
+        	    android:gravity="center"
+        	    android:layout_width="0dp"
+        	    android:layout_height="wrap_content"
+        	    android:layout_weight="0.8">
+        
+        		<TextView style="?android:textAppearanceMedium"
+        		    android:lineSpacingMultiplier="1.2"
+       		    	android:layout_width="match_parent"
+       		   	 	android:layout_height="wrap_content"
+       		   	 	android:gravity="center"
+       		    	android:id="@+id/busTimes" />
+        		
+        	</ScrollView>
+        		
+        	<ImageView android:id="@+id/right_arrow"
+        	    android:layout_width="0dp"
+        	    android:layout_weight="0.1"
+        	    android:layout_height="wrap_content"
+        	    android:layout_gravity="center" />
+        </LinearLayout>
 
     </LinearLayout>
-
-</ScrollView>

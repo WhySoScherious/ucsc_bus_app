@@ -30,13 +30,13 @@ public class BusStop implements Parcelable{
     private boolean tenHasMF;               // True if route 10 has a MF route
     private boolean tenHasSS;               // True if route 10 has a SS route
     private boolean fifteenHasMF;           // True if route 15 has a MF route
-    private boolean fifteenHasSS;           // True if route 15 has a MF route
+    private boolean fifteenHasSS;           // True if route 15 has a SS route
     private boolean sixteenHasMF;           // True if route 16 has a MF route
-    private boolean sixteenHasSS;           // True if route 16 has a MF route
+    private boolean sixteenHasSS;           // True if route 16 has a SS route
     private boolean nineteenHasMF;          // True if route 19 has a MF route
-    private boolean nineteenHasSS;          // True if route 19 has a MF route
+    private boolean nineteenHasSS;          // True if route 19 has a SS route
     private boolean twentyHasMF;            // True if route 20 has a MF route
-    private boolean twentyHasSS;            // True if route 20 has a MF route
+    private boolean twentyHasSS;            // True if route 20 has a SS route
     
     public static final Parcelable.Creator<BusStop> CREATOR =
             new Parcelable.Creator<BusStop>() {
