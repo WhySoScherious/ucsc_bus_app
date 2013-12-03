@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
      * Called by clicking "Bus Schedule" button from main page.
      */
     public void busSchedule(View view) {
+        mlocManager.removeUpdates(mlocListener);
         Intent intent = new Intent(MainActivity.this, BusScheduleActivity.class );
         startActivity( intent );
     }
@@ -44,7 +45,7 @@ public class MainActivity extends Activity {
         Toast.makeText( getApplicationContext(),
                 "Calculating closest stop...",
                 Toast.LENGTH_SHORT).show();
-        
+
         Intent intent = new Intent (MainActivity.this, StopInfoActivity.class );
 
         BusStop closestBusStop = getClosestStop ();
@@ -60,6 +61,7 @@ public class MainActivity extends Activity {
      * Called by clicking "Select a Stop" button from main page.
      */
     public void selectStop(View view) {
+        mlocManager.removeUpdates(mlocListener);
         Intent intent = new Intent(MainActivity.this, SelectStopActivity.class );
         startActivity( intent );
     }
@@ -68,10 +70,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         getUsersLoc();
         AssetManager assetManager = getAssets();
-        
+
         scBusStops = BusStop.createBusStopList(assetManager);
     }
 
@@ -82,17 +84,40 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    /*
+     * Initialize location manager and get the user's location.
+     * This runs at application startup to allow time to get an
+     * accurate location for user.
+     */
     private void getUsersLoc () {
-        /*
-         * Initialize location manager and get the user's location.
-         */
+        boolean gps_enabled = false;
+        boolean network_enabled = false;
         mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mlocListener = new MyLocationListener();
 
-        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                0, 0, mlocListener);
-        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                0, 0, mlocListener);
+        // Exceptions will be thrown if provider is not permitted.
+        try {
+            gps_enabled=mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch (Exception ex) {}
+
+        try {
+            network_enabled=mlocManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch (Exception ex) {}
+
+        // Don't start listeners if no provider is enabled
+        if(!gps_enabled && !network_enabled) {
+            Toast.makeText( getApplicationContext(),
+                    "Cannot obtain your location\nCheck your settings",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(gps_enabled)
+            mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    0, 0, mlocListener);
+        if(network_enabled)
+            mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                    0, 0, mlocListener);
     }
 
     /*
@@ -100,13 +125,11 @@ public class MainActivity extends Activity {
      * their location coordinates.
      */
     private BusStop getClosestStop () {
-        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                0, 0, mlocListener);
-
-        //String provider = mlocManager.getBestProvider(criteria, true);
-        Location myLoc = mlocManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
+        Criteria crit = new Criteria();
+        String bestProvider = mlocManager.getBestProvider(crit, true);
+        Location myLoc = mlocManager.getLastKnownLocation(bestProvider);
         mlocManager.removeUpdates(mlocListener);
+
         /*
          * Iterate through all BusStops, computing the shortest distance
          * between the stop and the user.
@@ -116,7 +139,7 @@ public class MainActivity extends Activity {
         float[] calculatedDistance = new float[1];
         float shortestDistance = Float.MAX_VALUE;
         BusStop closestBusStop = null;
-  
+
         for (int index = 0; index < scBusStops.size(); index++) {
             BusStop indexedStop = scBusStops.get(index);
             double stopLat = indexedStop.getLat();
@@ -128,7 +151,7 @@ public class MainActivity extends Activity {
                 closestBusStop = indexedStop;
             }
         }
-        
+
         return closestBusStop;
     }
 

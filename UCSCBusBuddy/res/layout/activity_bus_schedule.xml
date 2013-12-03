@@ -83,6 +83,6 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/mybutton"
         android:onClick="getNC"
-        android:text="NC" />
+        android:text="Night Core" />
 
 </RelativeLayout>
