@@ -230,7 +230,7 @@ public class StopInfoActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             String busRoute = routesRunning.get(position);
-            return ScreenSlidePageFragment.newInstance(stop.getBusTimes(busRoute), busRoute);
+            return ScreenSlidePageFragment.newInstance(stop.getBusTimes(busRoute), busRoute, pageCount, position);
         }
 
         @Override
