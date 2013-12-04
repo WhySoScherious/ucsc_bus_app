@@ -2,8 +2,8 @@
 UCSC Bus Buddy
 Team SPARC
 Deadline: December 9th, 2013
-Version 1.3
-Revision Date: 11/07/2013
+Version 1.4
+Revision Date: 12/04/2013
 
 To create an android app designed for UCSC students using school and
 Santa Cruz Metro buses.
@@ -45,15 +45,15 @@ current location, so I can determine whether I want to wait for the bus now. - 5
 3. As a tester, I need to be able to test all of the functions implemented
 and make sure they are working properly. - 5 points
 
-4. As a student user, I want an easy to use/navigate user interface so
-I can effectively use the mobile application. - 8 points
-
-5. As a student user, I want to be able to view the bus schedules
-without copying files to the device so that the application is easy to
-use. - 1 point
-
 Product Backlog:
 - Implement mapping of loop buses currently on UCSC campus.
 
 As a student user, I want to know where the loop buses are at, so that
 I would know whether or not I should walk to my destination. - 13 points
+
+As a student user, I want an easy to use/navigate user interface so
+I can effectively use the mobile application. - 8 points
+
+As a student user, I want to be able to view the bus schedules
+without copying files to the device so that the application is easy to
+use. - 1 point
