@@ -35,6 +35,8 @@ that I can upload different things to each page. - 2 points
 2. As a student user, I must be able to read a user manual of the app,
 so that I can know how to use the app. - 5 points
 
+3. As a student user, I want the bus schedule for buses #10-20 displayed on the app so that I can use it. - 8 points
+
 Sprint III:
 1. As a student user, I want to be able to know closest stop to me, so
 that I can go to that stop. - 13 points
